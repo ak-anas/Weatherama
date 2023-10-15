@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Viewport -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Weatherama</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="weather__header">
+            <form class="weather__search" method="post">
+                <input type="text" placeholder="Search for a city..." class="weather__searchform" name="city">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+            <div class="weather__units">
+                <form method="get">
+                    <input type="submit" name="unit" value="C">
+                    <input type="submit" name="unit" value="F">
+                </form>
+            </div>
+        </div>
+        <div class="weather__body">
+            <h1 class="weather__city">{{ city }}, {{ country }}</h1>
+            <div class="weather__datetime">
+                {{ date }}
+            </div>
+            <div class="weather__forecast">{{ forecast }}</div>
+            <div class="weather__icon">
+            </div>
+            <p class="weather__temperature">
+                {{ temperature }}&#176
+            </p>
+            <div class="weather__minmax">
+                <p>Min: {{ min }}&#176</p>
+                <p>Max: {{ max }}&#176</p>
+            </div>
+        </div>
+
+        <div class="weather__info">
+            <div class="weather__card">
+                <i class="fa-solid fa-temperature-full"></i>
+                <div>
+                    <p>Real Feel</p>
+                    <p class="weather__realfeel">{{ feel }}&#176</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-droplet"></i>
+                <div>
+                    <p>Humidity</p>
+                    <p class="weather__humidity">{{ humidity }}%</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-wind"></i>
+                <div>
+                    <p>Wind</p>
+                    <p class="weather__wind">{{ wind }}m/s</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-gauge-high"></i>
+                <div>
+                    <p>Pressure</p>
+                    <p class="weather__pressure">{{ pressure }}hPa</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="visited">
+            <h1>Most searched cities</h1>
+
+            {% for row in rows %}
+            <div class="cards">
+                <div class="card">
+                    <h1>{{ row["city_name"] }}</h3>
+                    <h2 class="card-footer">Searched: {{ row["count"] }} Time(s)</h2>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/a692e1c39f.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
